@@ -18,6 +18,8 @@ namespace calculator.ViewModel
             numberSt = "0";
             regneart = null;
             calculated = false;
+            negative = false;
+            percent = false;
         }
 
         [ObservableProperty]
@@ -26,6 +28,14 @@ namespace calculator.ViewModel
         [ObservableProperty]
         private string numberSt;
 
+        [ObservableProperty]
+        private bool percent;
+
+        [ObservableProperty]
+        private string flipSt;
+
+        [ObservableProperty]
+        private bool negative;
 
         [ObservableProperty]
         private float number2;
@@ -40,6 +50,86 @@ namespace calculator.ViewModel
         private float result;
 
         [RelayCommand]
+        public void flipNumber()
+        {
+            foreach (char c in NumberSt)
+            {
+                if (c == '-')
+                {
+                    Negative = true;
+                }
+            }
+            if (Negative)
+            {
+                int i = 0;
+                foreach (char c in NumberSt)
+                {
+                    if (c != '-') 
+                    { 
+                        FlipSt = FlipSt + NumberSt[i];
+                    }
+                    i++;
+                }
+            }
+            else
+            {
+                FlipSt = "-";
+                int i = 0;
+                foreach (char c in NumberSt)
+                {
+                    FlipSt = FlipSt + NumberSt[i];
+                    i++;
+                }
+            }
+            Negative = false;
+            NumberSt = FlipSt;
+            FlipSt = "";
+        }
+
+        [RelayCommand]
+        public void percentage()
+        {
+            if(Percent == false)
+            {
+                NumberSt = (float.Parse(NumberSt) / 100).ToString();
+                Percent = true;
+            }
+            else
+            {
+                NumberSt = (float.Parse(NumberSt) * 100).ToString();
+                Percent = false;
+            }
+        }
+
+        [RelayCommand]
+        public void divide()
+        {
+            Regneart = "/";
+            Number1 = float.Parse(NumberSt);
+        }
+
+        [RelayCommand]
+        public void minus()
+        {
+            Regneart = "-";
+            Number1 = float.Parse(NumberSt);
+        }
+
+        [RelayCommand]
+        public void times()
+        {
+            Regneart = "*";
+            Number1 = float.Parse(NumberSt);
+        }
+
+        [RelayCommand]
+        public void plus()
+        {
+            Regneart = "+";
+            Number1 = float.Parse(NumberSt);
+        }
+
+        [RelayCommand]
         public void button1()
         {
             
@@ -52,6 +142,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "1";
+                    Number1 = 1;
                 }
             }
             else
@@ -63,6 +154,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "1";
+                    Number2 = 1;
                 }
             }
         }
@@ -79,6 +171,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "2";
+                    Number1 = 2;
                 }
             }
             else
@@ -90,6 +183,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "2";
+                    Number2 = 2;
                 }
             }
         }
@@ -106,6 +200,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "3";
+                    Number1 = 3;
                 }
             }
             else
@@ -117,6 +212,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "3";
+                    Number2 = 3;
                 }
             }
         }
@@ -133,6 +229,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "4";
+                    Number1 = 4;
                 }
             }
             else
@@ -144,6 +241,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "4";
+                    Number2 = 4;
                 }
             }
         }
@@ -160,6 +258,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "5";
+                    Number1 = 5;
                 }
             }
             else
@@ -171,6 +270,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "5";
+                    Number2 = 5;
                 }
             }
         }
@@ -187,6 +287,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "6";
+                    Number1 = 6;
                 }
             }
             else
@@ -198,6 +299,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "6";
+                    Number2 = 6;
                 }
             }
         }
@@ -214,6 +316,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "7";
+                    Number1 = 7;
                 }
             }
             else
@@ -225,6 +328,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "7";
+                    Number2 = 7;
                 }
             }
         }
@@ -241,6 +345,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "8";
+                    Number1 = 8;
                 }
             }
             else
@@ -252,6 +357,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "8";
+                    Number2 = 8;
                 }
             }
         }
@@ -268,6 +374,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "9";
+                    Number1 = 9;
                 }
             }
             else
@@ -279,6 +386,7 @@ namespace calculator.ViewModel
                 else
                 {
                     NumberSt = "9";
+                    Number2 = 9;
                 }
             }
         }
@@ -298,6 +406,7 @@ namespace calculator.ViewModel
                 if (Number2 != 0)
                 {
                     NumberSt = NumberSt + "0";
+                    
                 }
             }
         }
@@ -306,6 +415,8 @@ namespace calculator.ViewModel
         public void ac()
         {
             Calculated = false;
+            Negative = false;
+            Percent = false;
             Number1 = 0; 
             Number2 = 0;
             Result = 0;
@@ -316,31 +427,15 @@ namespace calculator.ViewModel
         [RelayCommand]
         public void comma()
         {
-            if (Regneart == null)
+            foreach(char c in NumberSt)
             {
-                NumberSt = Number1.ToString();
-                foreach(char c in NumberSt)
+                if(c == ',')
                 {
-                    if(c == '.')
-                    {
-                        return;
-                    }
+                    return;
                 }
-                
-                NumberSt = NumberSt + ".";
             }
-            else
-            {
-                foreach(char c in NumberSt)
-                {
-                    if (c == '.')
-                    {
-                        return;
-                    }
-                }
-                
-                NumberSt = NumberSt + ".";
-            }
+            
+            NumberSt = NumberSt + ",";
         }
 
         [RelayCommand]
@@ -349,20 +444,25 @@ namespace calculator.ViewModel
             
             if (Calculated == false)
             {
+                Calculated = true;
                 Number2 = float.Parse(NumberSt);
                 switch (Regneart)
                 {
                     case "-":
                         Result = Number1 - Number2;
+                        NumberSt = Result.ToString();
                         break;
                     case "+":
                         Result = Number1 + Number2;
+                        NumberSt = Result.ToString();
                         break;
                     case "*":
                         Result = Number1 * Number2;
+                        NumberSt = Result.ToString();
                         break;
                     case "/":
                         Result = Number1 / Number2;
+                        NumberSt = Result.ToString();
                         break;
                 
                 }
@@ -373,24 +473,23 @@ namespace calculator.ViewModel
                 {
                     case "-":
                         Result = Result - Number2;
+                        NumberSt = Result.ToString();
                         break;
                     case "+":
                         Result = Result + Number2;
+                        NumberSt = Result.ToString();
                         break;
                     case "*":
                         Result = Result * Number2;
+                        NumberSt = Result.ToString();
                         break;
                     case "/":
                         Result = Result / Number2;
+                        NumberSt = Result.ToString();
                         break;
 
                 }
             }
-
-
-
         }
-
-       
     }
 }

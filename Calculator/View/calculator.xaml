@@ -27,21 +27,21 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" Grid.ColumnSpan="4" Text="{Binding NumberSt}" Style="{StaticResource screen}"/>
         <Button Grid.Row="1" Grid.Column="0" Content="AC" Command="{Binding acCommand}"/>
-        <Button Grid.Row="1" Grid.Column="1" Content="+/-"/>
-        <Button Grid.Row="1" Grid.Column="2" Content="%"/>
-        <Button Grid.Row="1" Grid.Column="3" Content="/" Style="{StaticResource orange}"/>
+        <Button Grid.Row="1" Grid.Column="1" Content="+/-" Command="{Binding flipNumberCommand}"/>
+        <Button Grid.Row="1" Grid.Column="2" Content="%" Command="{Binding percentageCommand}"/>
+        <Button Grid.Row="1" Grid.Column="3" Content="/" Style="{StaticResource orange}" Command="{Binding divideCommand}"/>
         <Button Grid.Row="2" Grid.Column="0" Content="1" Style="{StaticResource black}" Command="{Binding button1Command}"/>
         <Button Grid.Row="2" Grid.Column="1" Content="2" Style="{StaticResource black}" Command="{Binding button2Command}"/>
         <Button Grid.Row="2" Grid.Column="2" Content="3" Style="{StaticResource black}" Command="{Binding button3Command}"/>
-        <Button Grid.Row="2" Grid.Column="3" Content="*" Style="{StaticResource orange}"/>
+        <Button Grid.Row="2" Grid.Column="3" Content="*" Style="{StaticResource orange}" Command="{Binding timesCommand}"/>
         <Button Grid.Row="3" Grid.Column="0" Content="4" Style="{StaticResource black}" Command="{Binding button4Command}"/>
         <Button Grid.Row="3" Grid.Column="1" Content="5" Style="{StaticResource black}" Command="{Binding button5Command}"/>
         <Button Grid.Row="3" Grid.Column="2" Content="6" Style="{StaticResource black}" Command="{Binding button6Command}"/>
-        <Button Grid.Row="3" Grid.Column="3" Content="-" Style="{StaticResource orange}" />
+        <Button Grid.Row="3" Grid.Column="3" Content="-" Style="{StaticResource orange}" Command="{Binding minusCommand}"/>
         <Button Grid.Row="4" Grid.Column="0" Content="7" Style="{StaticResource black}" Command="{Binding button7Command}"/>
         <Button Grid.Row="4" Grid.Column="1" Content="8" Style="{StaticResource black}" Command="{Binding button8Command}"/>
         <Button Grid.Row="4" Grid.Column="2" Content="9" Style="{StaticResource black}" Command="{Binding button9Command}"/>
-        <Button Grid.Row="4" Grid.Column="3" Content="+" Style="{StaticResource orange}"/>
+        <Button Grid.Row="4" Grid.Column="3" Content="+" Style="{StaticResource orange}" Command="{Binding plusCommand}"/>
         <Button Grid.Row="5" Grid.ColumnSpan="2" Grid.Column="0" Content="0" Style="{StaticResource black}" Command="{Binding button0Command}"/>
         <Button Grid.Row="5" Grid.Column="2" Content="." Style="{StaticResource black}" Command="{Binding commaCommand}"/>
         <Button Grid.Row="5" Grid.Column="3" Content="=" Style="{StaticResource orange}" Command="{Binding calculateCommand}"/>
